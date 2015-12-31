@@ -1,2 +1,12 @@
+# require "bundler/gem_tasks"
+# task :default => :spec
+require "rake"
+require "rake/testtask"
 require "bundler/gem_tasks"
-task :default => :spec
+
+Rake::TestTask.new do |t|
+  t.pattern = 'test/**/*_test.rb'
+  t.libs.push 'test'
+end
+
+task :default => :test
