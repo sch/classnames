@@ -7,17 +7,22 @@ module Classnames
 
   class Classnames
     def initialize(*classes)
-      @classes = classes
+      @classes = classes.map { |classname| normalize(classname) }.flatten
+      self
+    end
+
+    def remove(classname)
+      classes.delete(classname)
+      self
+    end
+
+    def add(classname)
+      classes << normalize(classname)
+      self
     end
 
     def to_a
-      @classes.map { |css_class|
-        if css_class.is_a?(Hash)
-          compact_keys(css_class)
-        else
-          css_class
-        end
-      }.flatten.map(&:to_s)
+      classes.map(&:to_s)
     end
 
     def to_s
@@ -26,8 +31,14 @@ module Classnames
 
     private
 
+    attr_reader :classes
+
+    def normalize(classname)
+      classname.is_a?(Hash) ? compact_keys(classname) : classname
+    end
+
     def compact_keys(classname_hash)
-      classname_hash.reject { |_, value| value.nil? || value == false }.keys
+      classname_hash.select { |_, value| value }.keys
     end
   end
 end
