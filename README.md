@@ -1,15 +1,14 @@
 # Classnames
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/classnames`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Small gem for ergonomically creating class names for HTML in Ruby. Based on
+[JedWatson/classnames](https://github.com/JedWatson/classnames).
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'classnames'
+gem "classnames"
 ```
 
 And then execute:
@@ -22,7 +21,24 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+The 90% case:
+
+```erb
+<div class="<%= Classnames("Product", { "Product--unavailable" => product.out_of_stock? }) %>">
+  Blue Suede Shoes
+</div>
+```
+
+produces:
+
+```html
+<div class="Product Product--unavailable">
+  Blue Suede Shoes
+</div>
+```
+
+Checkout the tests for more examples
+
 
 ## Development
 
@@ -32,7 +48,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/classnames. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/sch/classnames. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
