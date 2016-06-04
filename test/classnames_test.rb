@@ -38,7 +38,7 @@ class TestClassnames < Minitest::Test
   end
 
   def test_module
-    assert_equal Classnames.to_s("class", "classy"), "class classy"
+    assert_equal Classnames("class", "classy"), "class classy"
   end
 
   def test_add
